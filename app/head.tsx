@@ -1,13 +1,21 @@
-export default function Head({ title, subtitle }: { title: string; subtitle: string }) {
+export default function Head({
+  title,
+  subtitle,
+}: {
+  title: string;
+  subtitle: string;
+}) {
   // Fallback tagline
-  title ??= "Share Environment Variables Securely";
-  subtitle ??= "EnvShare";
+  title ??= 'Share Environment Variables Securely';
+  subtitle ??= 'env.kefari.monster';
 
-  const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000";
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000';
 
-  const url = new URL("/api/v1/og", baseUrl);
-  url.searchParams.set("title", title);
-  url.searchParams.set("subtitle", subtitle);
+  const url = new URL('/api/v1/og', baseUrl);
+  url.searchParams.set('title', title);
+  url.searchParams.set('subtitle', subtitle);
 
   return (
     <>
@@ -16,18 +24,22 @@ export default function Head({ title, subtitle }: { title: string; subtitle: str
       <meta name="description" content={subtitle} />
       <meta name="theme-color" content="#000000" />
       <meta name="title" content={title} />
-      <meta name="keywords" content="envshare, secure, secrets, share, environment, variables" />
+      <meta
+        name="keywords"
+        content="envshare, secure, secrets, share, environment, variables"
+      />
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
       <meta name="robots" content="all" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-      
+      <meta name="robots" content="noindex,nofollow" />
+
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={baseUrl} />
-      <meta property='og:image' content={url.toString()} />
-      <meta property='og:title' content={title} />
-      <meta property='og:description' content={subtitle} />
+      <meta property="og:image" content={url.toString()} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={subtitle} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
 
