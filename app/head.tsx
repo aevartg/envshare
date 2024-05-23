@@ -7,7 +7,7 @@ export default function Head({
 }) {
   // Fallback tagline
   title ??= 'Share Environment Variables Securely';
-  subtitle ??= 'env.kefari.monster';
+  subtitle ??= 'Slúður Kingu';
 
   const baseUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
@@ -19,7 +19,7 @@ export default function Head({
 
   return (
     <>
-      <title>EnvShare</title>
+      <title>Slúður Kingu</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content={subtitle} />
       <meta name="theme-color" content="#000000" />
