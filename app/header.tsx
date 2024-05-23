@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
             href="/"
             className="text-2xl font-semibold duration-150 text-zinc-100 hover:text-white"
           >
-            evn.kefari.monster
+            Slúður Kingu
           </Link>
           {/* Desktop navigation */}
           <nav className="flex items-center grow">
