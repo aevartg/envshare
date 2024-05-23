@@ -33,6 +33,8 @@ export default function Home() {
 
       const { encrypted, iv, key } = await encrypt(text);
 
+      if (reads === 0) throw new Error('reads must be greater than 0');
+
       const { id } = (await fetch('/api/v1/store', {
         method: 'POST',
         body: JSON.stringify({
@@ -171,6 +173,7 @@ export default function Home() {
                   id="reads"
                   className="w-full p-0 text-base bg-transparent border-0 appearance-none text-zinc-100 placeholder-zinc-500 focus:ring-0 sm:text-sm"
                   value={reads}
+                  min={1}
                   onChange={(e) => setReads(e.target.valueAsNumber)}
                 />
               </div>

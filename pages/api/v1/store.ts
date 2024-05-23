@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
-import { Redis } from "@upstash/redis";
-import { generateId } from "pkg/id";
+import { Redis } from '@upstash/redis';
+import { NextRequest, NextResponse } from 'next/server';
+import { generateId } from 'pkg/id';
 
 type Request = {
   encrypted: string;
@@ -14,19 +14,19 @@ export default async function handler(req: NextRequest) {
   const { encrypted, ttl, reads, iv } = (await req.json()) as Request;
 
   const id = generateId();
-  const key = ["envshare", id].join(":");
+  const key = ['envshare', id].join(':');
 
   const tx = redis.multi();
 
   tx.hset(key, {
-    remainingReads: reads > 0 ? reads : null,
+    remainingReads: reads > 0 ? reads : 1,
     encrypted,
     iv,
   });
   if (ttl) {
     tx.expire(key, ttl);
   }
-  tx.incr("envshare:metrics:writes");
+  tx.incr('envshare:metrics:writes');
 
   await tx.exec();
 
@@ -34,5 +34,5 @@ export default async function handler(req: NextRequest) {
 }
 
 export const config = {
-  runtime: "edge",
+  runtime: 'edge',
 };
